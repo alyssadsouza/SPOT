@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Start a Project{% endblock %}
+
+{% block body %}
+<div id="bkgd"></div>
+    <div id='addproject'>
+        <h1>Let's start a project!</h1><br>
+
+        <form id="create-project" method="POST">
+            {% csrf_token %}
+
+            <h2>First, give it a title.</h2>
+            <p>Remember, short and sweet!</p>
+            <input type="text" name="title" required><br><br>
+
+            <h2>Now, add a description.</h2>
+            <p>So you and others will have an idea of what your project's all about at a glance.</p>
+            <textarea name="description" required></textarea><br><br>
+
+            <h2>And let's set a deadline to keep you on track.</h2>
+            <p>Remember, the deadline is self-monitored but keep it manageable so you can stick to it.</p>
+            <input id="datetime" type="datetime-local" name="deadline" required><br><br><br>
+
+            <input type="submit" value="Add Project" class="btn">
+
+        </form>
+        
+    </div>
+{% endblock %}

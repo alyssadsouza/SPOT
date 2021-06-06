@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Month At A Glance{% endblock %}
+
+{% block body %}
+
+    <div id="calendar">
+
+        <h1>Month At A Glance</h1>
+
+        <ul id="calendar-heading">
+            <li><a class="cal-btn" href="{% url 'calendar' prev_month %}"><</a></li>
+            <li><h2>{{month_name}}</h2></li>
+            <li><a class="cal-btn" href="{% url 'calendar' next_month %}">></a></li>
+        </ul>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>  
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in month %}
+                <tr>
+                    {% for day in week %}
+                    {% if day == today %}
+                        <td style="background-color:#FFED86">
+                    {% else %}
+                        <td>
+                    {% endif %}
+                        {% if day.month != prev_month and day.month != next_month %}
+                            <b>{{ day.day }}</b><br>
+                        {% else %}
+                            {{ day.day }}<br>
+                        {% endif %}
+                        {% for event in events %}
+                            {% if day.day == event.deadline.day %}
+                                {{event.title}}<br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <div id="to-do">
+        <h1>To-Do</h1>
+        {% for event in todays_events %}
+                {% if event.completed %}
+                    <div class="task green">
+                        <form class="to-do">
+                            <input type=checkbox class="task-checkbox" data-id={{event.id}} checked>{{event.title}}</input><br>
+                            <b>Deadline: </b>{{event.deadline}}
+                        </form>
+                    </div>
+                {% elif event.late %}
+                    <div class="task red">
+                        <form class="to-do">
+                            <input type=checkbox class="task-checkbox" data-id={{event.id}}>{{event.title}}</input><br>
+                            <b>Deadline: </b>{{event.deadline}}
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="task white">
+                        <form class="to-do">
+                            <input type=checkbox class="task-checkbox" data-id={{event.id}}>{{event.title}}</input><br>
+                            <b>Deadline: </b>{{event.deadline}}
+                        </form>
+                    </div>
+                {% endif %}
+            {% empty %}
+            <p>Woo! No tasks for today.</p>
+            {% endfor %}
+    </div>
+
+{% endblock %}

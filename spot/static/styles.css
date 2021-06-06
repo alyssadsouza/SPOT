@@ -1,0 +1,438 @@
+@-webkit-keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Noto Sans JP', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body::-webkit-scrollbar {
+  height: 0px;
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #fffcec;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #fff5b9;
+  border-radius: 20px;
+  border: none;
+}
+
+::-moz-selection {
+  background-color: #A2DCE7;
+}
+
+::selection {
+  background-color: #A2DCE7;
+}
+
+.project h1, .project h2 {
+  color: #323232;
+}
+
+.project h3 {
+  color: white;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #FFED86;
+}
+
+a:hover {
+  -webkit-text-decoration: solid underline #FFED86;
+          text-decoration: solid underline #FFED86;
+}
+
+input, textarea {
+  outline: none;
+  border: silver 1px solid;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+input::-webkit-input-placeholder {
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+input:-ms-input-placeholder {
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+input::-ms-input-placeholder {
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+input::placeholder {
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  font: 14px 'Noto Sans JP', sans-serif;
+  background-color: #FFED86;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#login, #register {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+table {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+
+table td {
+  height: 100px;
+  width: 100px;
+  overflow: auto;
+  padding: 10px;
+  vertical-align: top;
+  border: 5px solid transparent;
+  border-radius: 20px;
+  background-color: #F4F7F0;
+}
+
+#calendar-heading {
+  text-align: center;
+  color: #FFED86;
+}
+
+nav {
+  position: fixed;
+  z-index: 1;
+  width: 50px;
+  top: 0;
+  height: 100%;
+  background-color: #FFED86;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+}
+
+nav ul li {
+  margin-bottom: 10px;
+}
+
+nav ul img {
+  width: 100%;
+}
+
+#dog {
+  background-color: white;
+  border-radius: 20px;
+  height: 30px;
+  width: 30px;
+}
+
+#dog img {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+#calendar, #blueprints, #addproject {
+  position: relative;
+  padding: 50px 100px 50px;
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+}
+
+#calendar div, #blueprints div, #addproject div {
+  left: 50px;
+}
+
+#calendar {
+  padding: 50px 300px 100px 100px;
+}
+
+#calendar h1 {
+  text-align: center;
+}
+
+#calendar-heading {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+
+#calendar-heading li {
+  display: inline-block;
+}
+
+.cal-btn {
+  color: #FFED86;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#to-do {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+  padding: 20px;
+  background-color: #FFED86;
+}
+
+.task {
+  margin-bottom: 1px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.task form {
+  margin: 10px;
+}
+
+.green {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+  background-color: #A2DCE7;
+}
+
+.white {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+  background-color: #F4F7F0;
+}
+
+.red {
+  background-color: #FFB067;
+}
+
+.add-project-btn {
+  border: none;
+  background-color: #A2DCE7;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  padding: 15px;
+}
+
+.add-project-btn-div {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+#add-project-link {
+  font-size: 36px;
+  color: white;
+}
+
+#add-project-li {
+  text-align: center;
+}
+
+.project {
+  background-color: #FFED86;
+  width: 100%;
+  display: -ms-inline-grid;
+  display: inline-grid;
+  -ms-grid-columns: 65% 35%;
+      grid-template-columns: 65% 35%;
+  gap: 50px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.project-notes {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+#notes {
+  position: relative;
+  right: 0;
+  width: 100%;
+  height: 40%;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+.sketch {
+  width: 100%;
+  height: 45%;
+}
+
+.paint {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+#no-projects {
+  text-align: center;
+  width: 100%;
+  -webkit-transform: translate(0, 250px);
+          transform: translate(0, 250px);
+}
+
+#addproject {
+  text-align: center;
+}
+
+#datetime {
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+textarea {
+  width: 50%;
+  height: 50px;
+}
+
+.front-end, .back-end {
+  background-color: white;
+  padding: 10px;
+}
+
+.front-end h3, .back-end h3 {
+  color: #FFED86;
+}
+
+form {
+  margin: 20px;
+}
+
+.add-task {
+  text-align: center;
+}
+
+.sketch-btns li, .add-task-list li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.sketch-btns, .add-task-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sketch-btns button, .add-task-list button {
+  background: transparent;
+  border: solid 1px black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.sketch-btns .clear, .add-task-list .clear {
+  height: 30px;
+  -webkit-transform: translate(0, -3px);
+          transform: translate(0, -3px);
+  font: 14px 'Noto Sans JP', sans-serif;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+  opacity: 0;
+}
+
+#blueprints input[type=checkbox] {
+  left: 150px;
+  width: 55%;
+  height: 100px;
+  position: absolute;
+  -webkit-transform: translate(0, 30px);
+          transform: translate(0, 30px);
+}
+
+#to-do input[type=checkbox] {
+  width: 100%;
+  position: absolute;
+  right: 5px;
+  height: 50px;
+}
+
+#addproject h1 {
+  color: #A2DCE7;
+}
+
+#addproject h2 {
+  font-size: 24px;
+}
+
+footer {
+  width: 99%;
+  text-align: center;
+  font-size: 10px;
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+  overflow: hidden;
+}
+
+#bkgd {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("images/bkgd.png");
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+}
+
+#create-project {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #FFED86;
+}
+/*# sourceMappingURL=styles.css.map */

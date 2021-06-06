@@ -1,0 +1,399 @@
+$yellow: #FFED86;
+$green: #A2DCE7;
+$red: #FFB067;
+$ivory:#F4F7F0;
+
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:100%;}
+}
+
+body {
+    font-family: 'Noto Sans JP', 'Noto Sans JP', sans-serif;;
+    margin:0;
+    padding:0;
+    height:100%;
+    width: 100%;
+}
+
+body::-webkit-scrollbar {
+    height: 0px;
+    width: 8px;
+}
+  
+body::-webkit-scrollbar-track {
+background: lighten($yellow,20%);
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: lighten($yellow,10%);
+border-radius: 20px;
+border: none;
+}
+
+::selection {
+    background-color: $green;
+}
+
+.project {
+    h1,h2 {
+        color:rgb(50,50,50,);
+    }
+    h3 {
+        color:white;
+    }
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color:$yellow;
+}
+
+a:hover {
+    text-decoration: solid underline $yellow;
+}
+
+input, textarea {
+    outline: none;
+    border: silver 1px solid;
+    border-radius: 20px;
+    margin:5px;
+    padding:5px;
+    font: 14px 'Noto Sans JP', sans-serif;;
+}
+
+input::placeholder {
+    font: 14px 'Noto Sans JP', sans-serif;;
+}
+
+.btn {
+    border:none;
+    outline:none;
+    font: 14px 'Noto Sans JP', sans-serif;;
+    background-color: $yellow;
+    margin:10px;
+    padding:10px;
+    cursor: pointer;
+    
+}
+  
+#login, #register {
+    width:100%;
+    text-align: center;
+    position:absolute;
+    top:50%;
+    transform: translate(0,-50%);
+}
+
+table {
+
+    position:relative;
+    left:50%;
+    transform: translate(-50%);
+    
+    td {
+        height: 100px;
+        width: 100px;
+        overflow: auto;
+        padding:10px;
+        vertical-align: top;
+        border: 5px solid transparent;
+
+        border-radius:20px;
+        background-color: $ivory;
+    }
+}
+
+#calendar-heading {
+    text-align: center;
+    color:$yellow;
+}
+
+nav {
+    position:fixed;
+    z-index: 1;
+    width:50px;
+    top:0;
+    height:100%;
+    background-color: $yellow;
+    ul {
+        list-style-type: none;
+        margin:5px;
+        padding:5px;
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        img {
+            width:100%;
+        }
+    }
+}
+
+#dog {
+    background-color: white;
+    border-radius: 20px;
+    height:30px;
+    width:30px;
+    img {
+        position:relative;
+        top:50%;
+        transform: translate(0,-50%);
+    }
+}
+
+#calendar, #blueprints, #addproject {
+    position:relative;
+    padding: 50px 100px 50px;
+    div {
+        left:50px;
+    }
+    animation:fade 1s;
+}
+
+#calendar {
+    padding:50px 300px 100px 100px;
+    h1 {
+        text-align: center;
+    }
+}
+
+#calendar-heading {
+    list-style-type: none;
+    text-align: center;
+    padding:0;
+    li {
+        display:inline-block;
+    }
+}
+
+.cal-btn {
+    color: $yellow;
+    font-weight: bold;
+    font-size: 24px;
+    margin:10px;
+    padding:10px;
+}
+
+#to-do {
+    position:fixed;
+    right:0;
+    top:0;
+    height:100%;
+    width:200px;
+    padding: 20px;
+    background-color: $yellow;
+}
+
+.task {
+    margin-bottom: 1px;
+    padding:5px;
+    border-radius: 20px;
+
+    form {
+        margin: 10px;
+    }
+}
+
+.green {
+    animation: fade 1s;
+    background-color: $green;
+}
+
+.white {
+    animation: fade 1s;
+    background-color: $ivory;
+}
+
+.red {
+    background-color: $red;
+}
+
+.add-project-btn {
+    border:none;
+    background-color: $green;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    padding:15px;
+}
+
+.add-project-btn-div {
+    width:100%;
+    text-align: center;
+    padding:20px;
+}
+
+#add-project-link {
+    font-size: 36px;
+    color:white;
+}
+
+#add-project-li {
+    text-align: center;
+}
+
+.project {
+    background-color: $yellow;
+    width:100%;
+    display: inline-grid;
+    grid-template-columns: 65% 35%;
+    gap:50px;
+    margin:20px;
+    padding:20px;
+    border-radius: 20px;
+}
+
+.project-notes {
+    width:fit-content;
+}
+
+#notes {
+    position:relative;
+    right:0;
+    width:100%;
+    height:40%;
+    border:none;
+    outline:none;
+    background: rgba(256,256,256,0.2);
+    font-family: 'Noto Sans JP', sans-serif;;
+    font-size: 16px;
+    margin: 0;
+}
+
+.sketch {
+    width: 100%;
+    height: 45%;
+}
+
+.paint {
+    background-color: white;
+    height:100%;
+    width:100%;
+}
+
+#no-projects {
+    text-align: center;
+    width:100%;
+    transform: translate(0,250px);
+}
+
+#addproject {
+    text-align: center;
+}
+
+#datetime {
+    font: 14px 'Noto Sans JP', sans-serif;;
+}
+
+textarea {
+    width:50%;
+    height:50px;
+}
+
+.front-end, .back-end {
+    h3 {
+        color:$yellow;
+    }
+    background-color: white;
+    padding:10px;
+}
+
+form {
+    margin:20px;
+}
+
+.add-task {
+    text-align: center;
+}
+
+.sketch-btns li, .add-task-list li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.sketch-btns, .add-task-list{
+    list-style-type: none;
+    padding:0;
+
+    button {
+        background: transparent;
+        border: solid 1px black;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .clear {
+        height:30px;
+        transform: translate(0,-3px);
+        font: 14px 'Noto Sans JP', sans-serif;;
+    }
+}
+
+input[type=checkbox] {
+    cursor: pointer;
+    opacity: 0;
+}
+
+#blueprints input[type=checkbox] {
+    left:150px;
+    width:55%;
+    height:100px;
+    position:absolute;
+    transform: translate(0,30px);
+}
+
+#to-do input[type=checkbox] {
+    width: 100%;
+    position: absolute;
+    right: 5px;
+    height: 50px;
+}
+
+#addproject {
+    h1 {
+        color:$green;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+footer {
+    width:99%;
+    text-align: center;
+    font-size: 10px;
+    position:absolute;
+    bottom:0;
+    margin:10px;
+    overflow: hidden;
+}
+
+#bkgd {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-image: url("images/bkgd.png");
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    
+}
+
+#create-project {
+    background: rgba(256,256,256,0.5);
+    border: 1px solid $yellow;
+}

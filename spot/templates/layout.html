@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="{% static 'styles.css' %}" rel="stylesheet">
+        <link href="{% static 'images/favicon.ico' %}" rel="icon">
+        <title>{% block title %}{% endblock %}</title>
+        <script src="{% static 'spot.js' %}"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <nav>
+            <ul>
+                <li id="dog"><a href="{% url 'index' %}"><img src="{% static 'images/dog.svg' %}"></a></li>
+                <li><a href="{% url 'calendar' 6 %}"><img src="{% static 'images/calendar.svg' %}"></a></li>
+                <li><a href="{% url 'blueprints' %}"><img src="{% static 'images/blueprints.svg' %}"></a></li>
+                <li id="add-project-li"><a id="add-project-link" href="{% url 'add-project' %}">+</a></li>
+                <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.svg' %}"></a></li>
+            </ul>
+        </nav>
+        {% endif %}
+        {% block body %}{% endblock %}
+    </body>
+</html>
