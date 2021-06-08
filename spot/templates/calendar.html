@@ -7,11 +7,9 @@
 
     <div id="calendar">
 
-        <h1>Month At A Glance</h1>
-
         <ul id="calendar-heading">
             <li><a class="cal-btn" href="{% url 'calendar' prev_month %}"><</a></li>
-            <li><h2>{{month_name}}</h2></li>
+            <li><h1>{{month_name}}</h1></li>
             <li><a class="cal-btn" href="{% url 'calendar' next_month %}">></a></li>
         </ul>
         
@@ -31,21 +29,26 @@
                 {% for week in month %}
                 <tr>
                     {% for day in week %}
-                    {% if day == today %}
-                        <td style="background-color:#FFED86">
-                    {% else %}
-                        <td>
-                    {% endif %}
+                        {% if day == today %}
+                            <td style="background-color:#FFED86">
+                        {% else %}
+                            <td>
+                        {% endif %}
+
                         {% if day.month != prev_month and day.month != next_month %}
                             <b>{{ day.day }}</b><br>
                         {% else %}
                             {{ day.day }}<br>
                         {% endif %}
-                        {% for event in events %}
-                            {% if day.day == event.deadline.day %}
-                                {{event.title}}<br>
-                            {% endif %}
-                        {% endfor %}
+
+                        <div class="calendar-events">
+                            {% for event in events %}
+                                {% if day.day == event.deadline.day %}
+                                    {{event.title}}<br>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
                     </td>
                     {% endfor %}
                 </tr>
