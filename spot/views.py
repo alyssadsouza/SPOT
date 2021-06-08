@@ -33,29 +33,22 @@ def index(request):
 def calendar(request,month,year):
     c=cd.Calendar(firstweekday=6)
     calendar = c.monthdatescalendar(year,month)
-    # date = datetime.datetime(2021,6,25,00,00,00)
-    # print(date)
-    # event = Event(title="PD Day",start_time=date)
-    # event.save()    
     events = Event.objects.filter(user=request.user,deadline__month=month)
+    events = list(events) + list(Project.objects.filter(user=request.user,deadline__month=month))
     todays_events = Event.objects.filter(user=request.user,deadline__date=datetime.datetime.now().date())
     today = datetime.datetime.now().date()
+
+    next_month = month + 1
+    next_year = year
+    prev_year = year
+    prev_month = month-1
 
     if month == 12:
         next_month = 1
         next_year = year + 1
-        prev_year = year
-        prev_month = month-1
     elif month == 1:
-        next_month = month + 1
-        next_year = year
         prev_year = year - 1
         prev_month = 12
-    else:
-        next_month = month + 1
-        next_year = year
-        prev_year = year
-        prev_month = month-1
 
     months = {1:"January",2:"February",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}
 
