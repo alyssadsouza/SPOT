@@ -51,8 +51,8 @@
                             <ul class='add-task-list'>
                                 <li><label for="title">Add a task:</label><br>
                                     <input type="text" name="title" id="title" placeholder="Component..." required></li>
-                                    <li><label for="deadline">Add a deadline:</label><br>
-                                        <input type="datetime-local" name="deadline" id="deadline" required></li>
+                                    <li><label for="deadline">Add a deadline (or skip for now):</label><br>
+                                        <input type="datetime-local" name="deadline" id="deadline"></li>
                             </ul>
                             <input type="hidden" value={{project.id}} name="project">
                             <input type="hidden" value=True name="front_end">
@@ -93,8 +93,8 @@
                             <ul class='add-task-list'>
                                 <li><label for="title">Add a task:</label><br>
                                     <input type="text" name="title" id="title" placeholder="Component..." required></li>
-                                    <li><label for="deadline">Add a deadline:</label><br>
-                                        <input type="datetime-local" name="deadline" id="deadline" required></li>
+                                    <li><label for="deadline">Add a deadline (or skip for now):</label><br>
+                                        <input type="datetime-local" name="deadline" id="deadline"></li>
                             </ul>
                             <input type="hidden" value={{project.id}} name="project">
                             <input type="hidden" value=False name="front_end">

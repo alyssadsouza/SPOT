@@ -23,7 +23,7 @@ class Event(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE, related_name="userstasks",blank=True,null=True)
     project = models.ForeignKey(Project, on_delete=CASCADE, related_name="tasks", default="")
     title = models.CharField(max_length=64)
-    deadline = models.DateTimeField()
+    deadline = models.DateTimeField(blank=True,null=True)
     front_end = models.BooleanField(default=True)
     completed = models.BooleanField(default=False)
     late = models.BooleanField(default=False)

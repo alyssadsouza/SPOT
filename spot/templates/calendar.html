@@ -8,9 +8,9 @@
     <div id="calendar">
 
         <ul id="calendar-heading">
-            <li><a class="cal-btn" href="{% url 'calendar' prev_month %}"><</a></li>
+            <li><a class="cal-btn" href="{% url 'calendar' prev_month prev_year %}"><</a></li>
             <li><h1>{{month_name}}</h1></li>
-            <li><a class="cal-btn" href="{% url 'calendar' next_month %}">></a></li>
+            <li><a class="cal-btn" href="{% url 'calendar' next_month next_year %}">></a></li>
         </ul>
         
         <table>

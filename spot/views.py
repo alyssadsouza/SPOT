@@ -20,15 +20,19 @@ import datetime
 def index(request):
     events = Event.objects.all()
     for event in events:
-        if event.deadline.timestamp() < datetime.datetime.now().timestamp():
+        if event.deadline != None and event.deadline.timestamp() < datetime.datetime.now().timestamp():
             event.late = True
             event.save()
-    return HttpResponseRedirect("calendar/6")
+
+    date = datetime.datetime.now()
+    month, year = date.month, date.year
+    
+    return HttpResponseRedirect(f"calendar/{month}/{year}")
     
 @login_required
-def calendar(request,month):
+def calendar(request,month,year):
     c=cd.Calendar(firstweekday=6)
-    calendar = c.monthdatescalendar(2021,month)
+    calendar = c.monthdatescalendar(year,month)
     # date = datetime.datetime(2021,6,25,00,00,00)
     # print(date)
     # event = Event(title="PD Day",start_time=date)
@@ -37,13 +41,30 @@ def calendar(request,month):
     todays_events = Event.objects.filter(user=request.user,deadline__date=datetime.datetime.now().date())
     today = datetime.datetime.now().date()
 
-    next_month = month + 1
+    if month == 12:
+        next_month = 1
+        next_year = year + 1
+        prev_year = year
+        prev_month = month-1
+    elif month == 1:
+        next_month = month + 1
+        next_year = year
+        prev_year = year - 1
+        prev_month = 12
+    else:
+        next_month = month + 1
+        next_year = year
+        prev_year = year
+        prev_month = month-1
+
     months = {1:"January",2:"February",3:"March",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}
 
     return render(request,"calendar.html",{
         "month":calendar,
         "next_month":next_month,
-        "prev_month":next_month-2,
+        "next_year":next_year,
+        "prev_month":prev_month,
+        "prev_year":prev_year,
         "month_name":months[month],
         "events":events,
         "todays_events":todays_events,
@@ -55,7 +76,10 @@ def blueprints(request):
     if request.method == 'POST':
         title, deadline, front_end = request.POST["title"], request.POST["deadline"],request.POST["front_end"]
         project = Project.objects.get(pk=int(request.POST["project"]))
-        task = Event(user=request.user,project=project, title=title, deadline=deadline,front_end=front_end)
+        if len(deadline) > 0:
+            task = Event(user=request.user,project=project, title=title, deadline=deadline,front_end=front_end)
+        else:
+            task = Event(user=request.user,project=project, title=title, front_end=front_end)
         task.save()
 
     get_projects = Project.objects.filter(user=request.user).order_by('deadline')

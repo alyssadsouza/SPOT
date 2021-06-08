@@ -34,7 +34,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #fff5b9;
+  background-color: #cbebf1;
   border-radius: 20px;
   border: none;
 }
@@ -127,12 +127,22 @@ table {
 table td {
   height: 100px;
   width: 100px;
-  overflow: auto;
   padding: 10px;
   vertical-align: top;
   border: 5px solid transparent;
   border-radius: 20px;
   background-color: #F4F7F0;
+}
+
+.calendar-events {
+  overflow: auto;
+  width: 100%;
+  height: 90%;
+}
+
+.calendar-events::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
 }
 
 #calendar-heading {
@@ -189,7 +199,7 @@ nav ul img {
 }
 
 #calendar {
-  padding: 50px 300px 100px 100px;
+  padding: 0 300px 100px 100px;
 }
 
 #calendar h1 {
@@ -321,8 +331,10 @@ nav ul img {
 #no-projects {
   text-align: center;
   width: 100%;
-  -webkit-transform: translate(0, 250px);
-          transform: translate(0, 250px);
+  top: 50%;
+  position: fixed;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
 }
 
 #addproject {

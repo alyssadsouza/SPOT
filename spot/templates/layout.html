@@ -15,7 +15,7 @@
         <nav>
             <ul>
                 <li id="dog"><a href="{% url 'index' %}"><img src="{% static 'images/dog.svg' %}"></a></li>
-                <li><a href="{% url 'calendar' 6 %}"><img src="{% static 'images/calendar.svg' %}"></a></li>
+                <li><a href="{% url 'index' %}"><img src="{% static 'images/calendar.svg' %}"></a></li>
                 <li><a href="{% url 'blueprints' %}"><img src="{% static 'images/blueprints.svg' %}"></a></li>
                 <li id="add-project-li"><a id="add-project-link" href="{% url 'add-project' %}">+</a></li>
                 <li><a href="{% url 'logout' %}"><img src="{% static 'images/logout.svg' %}"></a></li>
