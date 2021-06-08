@@ -22,7 +22,7 @@ body::-webkit-scrollbar {
 }
   
 body::-webkit-scrollbar-track {
-background: lighten($yellow,20%);
+background: lighten($green,20%);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -208,9 +208,28 @@ nav {
     margin-bottom: 1px;
     padding:5px;
     border-radius: 20px;
+    display:grid;
+    grid-template-columns: 85% 15%;
 
     form {
         margin: 10px;
+    }
+    label {
+        position:relative;
+    }
+}
+
+.edit-btns {
+    position:relative;
+    img {
+        width:30px;
+    }
+    li {
+        display:inline-block
+    }
+    ul {
+        list-style-type: none;
+        padding:0;
     }
 }
 
@@ -225,6 +244,7 @@ nav {
 }
 
 .red {
+    animation: fade 1s;
     background-color: $red;
 }
 
@@ -265,14 +285,16 @@ nav {
 }
 
 .project-notes {
-    width:fit-content;
+    max-width: 400px;
+    display: grid;
+    grid-template-rows: 50% 50%;
 }
 
 #notes {
     position:relative;
     right:0;
     width:100%;
-    height:40%;
+    height:80%;
     border:none;
     outline:none;
     background: rgba(256,256,256,0.2);
@@ -283,7 +305,7 @@ nav {
 
 .sketch {
     width: 100%;
-    height: 45%;
+    height:80%;
 }
 
 .paint {
@@ -314,11 +336,14 @@ textarea {
 }
 
 .front-end, .back-end {
-    h3 {
-        color:$yellow;
-    }
-    background-color: white;
     padding:10px;
+    .btn {
+        background-color: $ivory;
+    }
+    .btn:hover {
+        background-color: $green;
+    }
+
 }
 
 form {
@@ -359,7 +384,7 @@ input[type=checkbox] {
 #blueprints input[type=checkbox] {
     left:150px;
     width:55%;
-    height:100px;
+    height:70px;
     position:absolute;
     transform: translate(0,30px);
 }

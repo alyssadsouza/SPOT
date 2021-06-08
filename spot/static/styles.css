@@ -30,7 +30,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: #fffcec;
+  background: #f3fbfc;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -238,10 +238,35 @@ nav ul img {
   margin-bottom: 1px;
   padding: 5px;
   border-radius: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 85% 15%;
+      grid-template-columns: 85% 15%;
 }
 
 .task form {
   margin: 10px;
+}
+
+.task label {
+  position: relative;
+}
+
+.edit-btns {
+  position: relative;
+}
+
+.edit-btns img {
+  width: 30px;
+}
+
+.edit-btns li {
+  display: inline-block;
+}
+
+.edit-btns ul {
+  list-style-type: none;
+  padding: 0;
 }
 
 .green {
@@ -257,6 +282,8 @@ nav ul img {
 }
 
 .red {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
   background-color: #FFB067;
 }
 
@@ -299,16 +326,18 @@ nav ul img {
 }
 
 .project-notes {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  max-width: 400px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 50% 50%;
+      grid-template-rows: 50% 50%;
 }
 
 #notes {
   position: relative;
   right: 0;
   width: 100%;
-  height: 40%;
+  height: 80%;
   border: none;
   outline: none;
   background: rgba(255, 255, 255, 0.2);
@@ -319,7 +348,7 @@ nav ul img {
 
 .sketch {
   width: 100%;
-  height: 45%;
+  height: 80%;
 }
 
 .paint {
@@ -351,12 +380,15 @@ textarea {
 }
 
 .front-end, .back-end {
-  background-color: white;
   padding: 10px;
 }
 
-.front-end h3, .back-end h3 {
-  color: #FFED86;
+.front-end .btn, .back-end .btn {
+  background-color: #F4F7F0;
+}
+
+.front-end .btn:hover, .back-end .btn:hover {
+  background-color: #A2DCE7;
 }
 
 form {
@@ -399,7 +431,7 @@ input[type=checkbox] {
 #blueprints input[type=checkbox] {
   left: 150px;
   width: 55%;
-  height: 100px;
+  height: 70px;
   position: absolute;
   -webkit-transform: translate(0, 30px);
           transform: translate(0, 30px);

@@ -61,28 +61,26 @@
     <div id="to-do">
         <h1>To-Do</h1>
         {% for event in todays_events %}
-                {% if event.completed %}
-                    <div class="task green">
-                        <form class="to-do">
-                            <input type=checkbox class="task-checkbox" data-id={{event.id}} checked>{{event.title}}</input><br>
-                            <b>Deadline: </b>{{event.deadline}}
-                        </form>
-                    </div>
-                {% elif event.late %}
-                    <div class="task red">
-                        <form class="to-do">
-                            <input type=checkbox class="task-checkbox" data-id={{event.id}}>{{event.title}}</input><br>
-                            <b>Deadline: </b>{{event.deadline}}
-                        </form>
-                    </div>
-                {% else %}
-                    <div class="task white">
+            {% if event.completed %}
+                <div class="task green">
+            {% elif event.late %}
+                <div class="task red">
+            {% else %}
+                <div class="task white">
+            {% endif %}
+                    <div>
                         <form class="to-do">
                             <input type=checkbox class="task-checkbox" data-id={{event.id}}>{{event.title}}</input><br>
-                            <b>Deadline: </b>{{event.deadline}}
+                            <label><b>Deadline: </b>{{event.deadline}}</label>
                         </form>
                     </div>
-                {% endif %}
+                    <div class="edit-btns">
+                        <ul>
+                            <li><img src="{% static 'images/edit.svg' %}"></li>
+                            <li><img src="{% static 'images/delete.svg' %}"></li>
+                        </ul>
+                    </div>
+                </div>
             {% empty %}
             <p>Woo! No tasks for today.</p>
             {% endfor %}

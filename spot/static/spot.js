@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     document.querySelectorAll('.task-checkbox').forEach(btn => {
-        var parent = btn.parentNode.parentNode;
+        var parent = btn.parentNode.parentNode.parentNode;
         console.log(parent.classList);
         
         btn.addEventListener("click", () => {
@@ -35,6 +35,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
         })
+    })
+
+    document.querySelectorAll(".edit-task").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.dataset.id;
+            document.getElementById(`task${id}`).style.display = "none";
+            document.getElementById(`edit${id}`).style.display = "block";
+            console.log(document.getElementById(`edit${id}-form`));
+
+            document.getElementById(`edit${id}-form`).onsubmit = () => {
+
+                const title = document.getElementById(`edit${id}-title`).value;
+                const deadline = document.getElementById(`edit${id}-deadline`).value;
+
+                fetch(`/event/${btn.dataset.id}`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title: title,
+                        deadline:deadline
+                    })
+                });
+                return
+            }
+            
+        });
     })
 
     // Drawing on canvas

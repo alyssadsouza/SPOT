@@ -76,21 +76,57 @@ def blueprints(request):
         task.save()
 
     get_projects = Project.objects.filter(user=request.user).order_by('deadline')
+    print(get_projects)
     projects = {}
 
     for project in get_projects:
         tasks = Event.objects.filter(user=request.user,project=project).order_by('deadline')
         projects[project] = tasks
-
-    # projects = {}
+    print(projects)
 
     return render(request, "blueprints.html",{"projects":projects})
+
+@login_required
+def delete_task(request, id):
+    try:
+        task = Event.objects.get(pk=id)
+    except Event.DoesNotExist:
+        return HttpResponse("Event Not Found.")
+    task.delete()
+    return blueprints(request)
+
+@login_required
+def delete_project(request, id):
+    try:
+        project = Project.objects.get(pk=id)
+    except Event.DoesNotExist:
+        return HttpResponse("Project Not Found.")
+    project.delete()
+    return blueprints(request)
+
+@login_required
+def edit_task(request, id):
+    return render(request, "edit.html")
+
+@login_required
+def edit_project(request, id):
+    project = Project.objects.get(pk=id)
+
+    if request.method == "POST":
+        title, description, deadline = request.POST["title"],  request.POST["description"],  request.POST["deadline"]
+        project.title = title
+        project.description = description
+        project.deadline = deadline
+        project.save()
+        request.method = "GET"
+        return blueprints(request)
+    
+    return render(request, "edit.html", {"project":project})
 
 @login_required
 def add_project(request):
     if request.method == "POST":
         title, description, deadline = request.POST["title"],  request.POST["description"],  request.POST["deadline"]
-        print(title,description,deadline)
         project = Project(user=request.user,title=title,description=description,deadline=deadline)
         project.save()
         return HttpResponseRedirect("blueprints")
@@ -106,11 +142,20 @@ def event(request, id):
         return JsonResponse({"error": "Event not found."}, status=404)
     if request.method == 'PUT':
         data = json.loads(request.body)
-        print(data, event)
         if data.get("completed") is not None:
             event.completed = data["completed"]
         event.save()
         return HttpResponse(status=204)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        if data.get("title") is not None:
+            event.title = data["title"]
+        if data.get("deadline") is not None and data.get("deadline") != "None":
+            event.deadline = data["deadline"]
+        event.save()
+        print(event)
+        request.method = "GET"
+        return blueprints(request)
     else:
         return(HttpResponse(status=404))
 

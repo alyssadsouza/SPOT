@@ -11,6 +11,12 @@
             <div class="project">
                 <div class="left">
                     <h1>{{project.title}}</h1>
+                    <div class="edit-btns" style="left:0">
+                        <ul>
+                            <li><a href="{% url 'edit-project' project.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                            <li><a href="{% url 'delete-project' project.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                        </ul>
+                    </div>
                     <h3>Description:</h3>
                     <p>{{project.description}}</p>
                     <h3>Deadline:</h3>
@@ -23,24 +29,56 @@
                             {% if task.front_end %}
                                 {% if task.completed %}
                                     <div class="task green">
-                                        <form class="to-do">
-                                            <input type=checkbox class="task-checkbox" data-id={{task.id}} checked>{{task.title}}</input><br>
-                                            <b>Deadline: </b>{{task.deadline}}
-                                        </form>
+                                        <div style="display: block;" id="task{{task.id}}">
+                                            <form class="to-do">
+                                                <input type=checkbox class="task-checkbox" data-id={{task.id}} checked>{{task.title}}</input><br>
+                                                <label><b>Deadline: </b>{{task.deadline}}</label>
+                                            </form>
+                                        </div>
+                                        <div class="to-do" style="display:none" id="edit{{task.id}}">
+                                            <form id="edit{{task.id}}-form">
+                                                <input type=text class="task-checkbox" id="edit{{task.id}}-title" value={{task.title}} data-id={{task.id}}><br>
+                                                <p>Original deadline: {{task.deadline}}</p><br>
+                                                <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                                <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                            </form>
+                                        </div>
+                                        <div class="edit-btns">
+                                            <ul>
+                                                <li><a class="edit-task" href="#" data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
+                                                <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 {% elif task.late %}
                                     <div class="task red">
-                                        <form class="to-do">
-                                            <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
-                                            <b>Deadline: </b>{{task.deadline}}
-                                        </form>
+                                        <div>
+                                            <form class="to-do">
+                                                <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
+                                                <label><b>Deadline: </b>{{task.deadline}}</label>
+                                            </form>
+                                        </div>
+                                        <div class="edit-btns">
+                                            <ul>
+                                                <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                                <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 {% else %}
                                     <div class="task white">
-                                        <form class="to-do">
-                                            <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
-                                            <b>Deadline: </b>{{task.deadline}}
-                                        </form>
+                                        <div>
+                                            <form class="to-do">
+                                                <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
+                                                <label><b>Deadline: </b>{{task.deadline}}</label>
+                                            </form>
+                                        </div>
+                                        <div class="edit-btns">
+                                            <ul>
+                                                <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                                <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 {% endif %}
                             {% endif %}
@@ -63,28 +101,52 @@
                         <h3>Back-End</h3>
                         {% for task in tasks %}
                             {% if not task.front_end %}
-                                {% if task.completed %}
-                                    <div class="task green">
-                                        <form class="to-do">
-                                            <input type=checkbox class="task-checkbox" data-id={{task.id}} checked>{{task.title}}</input><br>
-                                            <b>Deadline: </b>{{task.deadline}}
-                                        </form>
-                                    </div>
-                                {% elif task.late %}
-                                    <div class="task red">
-                                        <form class="to-do">
-                                            <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
-                                            <b>Deadline: </b>{{task.deadline}}
-                                        </form>
-                                    </div>
-                                {% else %}
-                                    <div class="task white">
-                                        <form class="to-do">
-                                            <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
-                                            <b>Deadline: </b>{{task.deadline}}
-                                        </form>
-                                    </div>
-                                {% endif %}
+                            {% if task.completed %}
+                            <div class="task green">
+                                <div>
+                                    <form class="to-do">
+                                        <input type=checkbox class="task-checkbox" data-id={{task.id}} checked>{{task.title}}</input><br>
+                                        <label><b>Deadline: </b>{{task.deadline}}</label>
+                                    </form>
+                                </div>
+                                <div class="edit-btns">
+                                    <ul>
+                                        <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                        <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% elif task.late %}
+                            <div class="task red">
+                                <div>
+                                    <form class="to-do">
+                                        <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
+                                        <label><b>Deadline: </b>{{task.deadline}}</label>
+                                    </form>
+                                </div>
+                                <div class="edit-btns">
+                                    <ul>
+                                        <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                        <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="task white">
+                                <div>
+                                    <form class="to-do">
+                                        <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
+                                        <label><b>Deadline: </b>{{task.deadline}}</label>
+                                    </form>
+                                </div>
+                                <div class="edit-btns">
+                                    <ul>
+                                        <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                        <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
                             {% endif %}
                         {% endfor %}
     
@@ -103,18 +165,22 @@
                     </div>    
                 </div>
                 <div class="project-notes">
-                    <h3>Project Notes</h3>
-                    <textarea id="notes" placeholder="Add notes..."></textarea>
-
-                    <ul class="sketch-btns">
-                        <li><h3>Sketch Your Ideas</h3></li>
-                        <li><button class="draw"><img src="{% static 'images/draw.svg' %}" width='20px'></button></li>
-                        <li><button class="erase"><img src="{% static 'images/erase.svg' %}" width='20px'></button></li>
-                        <li><button class="clear">Clear</button></li>
-                    </ul>
-                    <div class="sketch">
-                        <canvas class="paint"></canvas>
+                    <div>
+                        <h3>Project Notes</h3>
+                        <textarea id="notes" placeholder="Add notes..."></textarea>
                     </div>
+                    <div>
+                        <ul class="sketch-btns">
+                            <li><h3>Sketch Your Ideas</h3></li>
+                            <li><button class="draw"><img src="{% static 'images/draw.svg' %}" width='20px'></button></li>
+                            <li><button class="erase"><img src="{% static 'images/erase.svg' %}" width='20px'></button></li>
+                            <li><button class="clear">Clear</button></li>
+                        </ul>
+                        <div class="sketch">
+                            <canvas class="paint"></canvas>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         {% empty %}
