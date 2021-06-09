@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}Log In | SPOT{% endblock %}
 {% block body %}
 <div id="bkgd"></div>
+<nav id="index-nav">
+    <ul>
+        <li><a href="{% url 'index' %}"><img src="{% static 'images/dog copy.svg' %}"></a></li>
+        <li><a href="{% url 'login'%}">Log In</a></li>
+        <li><a href="{% url 'register'%}">Register</a></li>
+    </ul>
+</nav>
 <div id="login">
     <h2>Login</h2>
 

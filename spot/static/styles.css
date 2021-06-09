@@ -65,7 +65,7 @@ h2 {
 
 a, a:visited {
   text-decoration: none;
-  color: #FFED86;
+  color: #ffe553;
 }
 
 a:hover {
@@ -108,6 +108,10 @@ input::placeholder {
   cursor: pointer;
 }
 
+.btn:hover {
+  background-color: #ffe96d;
+}
+
 #login, #register {
   width: 100%;
   text-align: center;
@@ -147,7 +151,7 @@ table td {
 
 #calendar-heading {
   text-align: center;
-  color: #FFED86;
+  color: #ffe553;
 }
 
 nav {
@@ -217,7 +221,7 @@ nav ul img {
 }
 
 .cal-btn {
-  color: #FFED86;
+  color: #ffe553;
   font-weight: bold;
   font-size: 24px;
   margin: 10px;
@@ -236,6 +240,10 @@ nav ul img {
 
 #to-do input {
   width: -webkit-fill-available;
+}
+
+#to-do h1 {
+  text-align: center;
 }
 
 .task {
@@ -303,6 +311,10 @@ nav ul img {
   font-size: 24px;
   color: white;
   padding: 15px;
+}
+
+.add-project-btn :hover {
+  background-color: #8ed4e2;
 }
 
 .add-project-btn-div {
@@ -461,17 +473,15 @@ input[type=checkbox] {
 }
 
 footer {
-  width: 99%;
-  text-align: center;
   font-size: 10px;
   position: absolute;
-  bottom: 0;
   margin: 10px;
-  overflow: hidden;
+  padding: 10px;
+  right: 0;
 }
 
 #bkgd {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -510,6 +520,10 @@ footer {
   border-radius: 20px;
 }
 
+#cancel button:hover {
+  background-color: #ffe96d;
+}
+
 .grid-87-13 {
   -ms-grid-columns: 87% 13%;
       grid-template-columns: 87% 13%;
@@ -517,5 +531,158 @@ footer {
 
 #project-link {
   color: #323232;
+}
+
+#index {
+  position: relative;
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+}
+
+#index h1 {
+  color: #323232;
+}
+
+#index div {
+  padding: 50px;
+}
+
+#index #intro {
+  background-color: #FFED86;
+  padding: 50px;
+}
+
+#intro, #welcome {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#welcome {
+  margin: 20px;
+}
+
+#welcome h4 {
+  font-size: 24px;
+  color: #A2DCE7;
+  margin: 0;
+}
+
+#welcome h1 {
+  font-size: 72px;
+  margin: 0;
+}
+
+#welcome div {
+  text-align: center;
+}
+
+#welcome img {
+  width: 600px;
+}
+
+#welcome-btn {
+  color: white;
+  border-radius: 30px;
+  font-size: 18px;
+  padding: 15px;
+}
+
+#get-started {
+  color: #323232;
+  font-size: 20px;
+  border-radius: 30px;
+  padding: 20px;
+  position: relative;
+}
+
+#get-started:hover {
+  text-decoration: none;
+  background-color: #8ed4e2;
+}
+
+#get-started-div {
+  text-align: center;
+}
+
+.index-images {
+  height: auto;
+  width: auto;
+}
+
+.index-images ul {
+  width: 100%;
+  text-align: center;
+}
+
+.index-images button {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.project-img {
+  display: none;
+}
+
+.visible {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: -webkit-fill-available;
+}
+
+#how-it-works-group {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#video {
+  text-align: center;
+}
+
+iframe {
+  border: none;
+}
+
+#index-nav {
+  background-color: transparent;
+  position: relative;
+  width: 100%;
+  top: 0;
+  height: 50px;
+  margin: 0;
+}
+
+#index-nav li {
+  display: inline-block;
+  margin: 0;
+  margin-right: 20px;
+}
+
+#index-nav img {
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: 5px;
+  top: 8px;
+}
+
+#index-nav a {
+  color: black;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+#index-nav a:hover {
+  color: #ffe553;
+}
+
+#index-nav ul {
+  margin: 0;
 }
 /*# sourceMappingURL=styles.css.map */

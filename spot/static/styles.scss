@@ -54,7 +54,7 @@ h2 {
 
 a, a:visited {
     text-decoration: none;
-    color:$yellow;
+    color:darken($yellow, 10%);
 }
 
 a:hover {
@@ -83,6 +83,10 @@ input::placeholder {
     padding:10px;
     cursor: pointer;
     
+}
+
+.btn:hover {
+    background-color: darken($yellow, 5%);
 }
   
 #login, #register {
@@ -124,7 +128,7 @@ table {
 
 #calendar-heading {
     text-align: center;
-    color:$yellow;
+    color:darken($yellow, 10%);
 }
 
 nav {
@@ -187,7 +191,7 @@ nav {
 }
 
 .cal-btn {
-    color: $yellow;
+    color: darken($yellow, 10%);
     font-weight: bold;
     font-size: 24px;
     margin:10px;
@@ -205,6 +209,9 @@ nav {
     
     input {
         width:-webkit-fill-available;
+    }
+    h1 {
+        text-align: center;
     }
 }
 
@@ -263,6 +270,9 @@ nav {
     font-size: 24px;
     color: white;
     padding:15px;
+    :hover {
+        background-color: darken($green, 5%);
+    }
 }
 
 .add-project-btn-div {
@@ -414,17 +424,15 @@ input[type=checkbox] {
 }
 
 footer {
-    width:99%;
-    text-align: center;
     font-size: 10px;
     position:absolute;
-    bottom:0;
     margin:10px;
-    overflow: hidden;
+    padding: 10px;
+    right:0;
 }
 
 #bkgd {
-    position:absolute;
+    position:fixed;
     width:100%;
     height:100%;
     top:0;
@@ -460,6 +468,9 @@ footer {
     button {
         border-radius: 20px;
     }
+    button:hover {
+        background-color: darken($yellow, 5%);
+    }
 }
 
 .grid-87-13 {
@@ -468,4 +479,136 @@ footer {
 
 #project-link {
     color:rgb(50,50,50);
+}
+
+#index {
+    position:relative;
+    animation:fade 1s;
+    h1 {
+        color:rgb(50,50,50);
+    }
+    div {
+        padding:50px;
+    }
+    
+    #intro {
+        background-color: $yellow;
+        padding:50px;
+    }
+}
+
+#intro, #welcome {
+    display:flex;
+    align-items: center;
+}
+
+#welcome {
+    margin:20px;
+    h4 {
+        font-size: 24px;
+        color: $green;
+        margin:0;
+    }
+    h1 {
+        font-size: 72px;
+        margin:0;
+    }
+    div {
+        text-align: center;
+    }
+    img {
+        width:600px;
+    }
+}
+
+#welcome-btn {
+    color: white;
+    border-radius: 30px;
+    font-size: 18px;
+    padding:15px;
+}
+
+#get-started {
+    color: rgb(50,50,50);
+    font-size: 20px;
+    border-radius: 30px;
+    padding:20px;
+    position:relative;
+}
+#get-started:hover {
+    text-decoration: none;
+    background-color: darken($green, 5%);
+}
+#get-started-div {
+    text-align: center;
+}
+
+.index-images {
+    height: auto;
+    width: auto;
+    
+    ul {
+        width:100%;
+        text-align: center;
+    }
+    button {
+        width:50px;
+        height:50px;
+        border-radius: 30px;
+    }
+}
+
+.project-img {
+    display:none;
+}
+
+.visible {
+    display:block;
+    margin:0;
+    padding:0;
+    width: -webkit-fill-available;
+}
+
+#how-it-works-group {
+    background-color: rgba(256,256,256,0.5);
+}
+
+#video {
+    text-align: center;
+}
+
+iframe {
+    border:none;
+}
+
+#index-nav {
+    background-color: transparent;
+    position:relative;
+    width:100%;
+    top:0;
+    height:50px;
+    margin:0;
+    li {
+        display:inline-block;
+        margin:0;
+        margin-right:20px;
+    }
+    img {
+        margin:0;
+        width:30px;
+        height:30px;
+        position: relative;
+        left: 5px;
+        top: 8px;
+    }
+    a {
+        color:black;
+        height: fit-content;
+    }
+    a:hover {
+        color:darken($yellow, 10%);
+    }
+    ul {
+        margin:0;
+    }
 }

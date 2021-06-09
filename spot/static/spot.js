@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    document.querySelectorAll(".next").forEach(btn => {
+        btn.addEventListener("click", () => change_image(btn));
+    });
+
+    document.querySelectorAll(".prev").forEach(btn => {
+        btn.addEventListener("click", () => change_image(btn=btn,next=false,prev=true));
+    });
     
     document.querySelectorAll('.task-checkbox').forEach(btn => {
         var parent = btn.parentNode.parentNode.parentNode;
@@ -127,3 +135,39 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     
 })
+
+function change_image(btn, next=true, prev=false) {
+    console.log(next,prev);
+    var parent = document.getElementById(`${btn.dataset.parent}`);
+    console.log(parent);
+
+    const max = Number(parent.dataset.max);
+    var btn_num = Number(btn.parentNode.parentNode.dataset.num);
+
+        parent.childNodes[1].childNodes.forEach(img => {
+            if (img.id ===`img${btn.parentNode.parentNode.dataset.num}`) {
+                console.log("hide",img);
+                img.className = 'project-img';
+            }
+        });
+
+        if (next) {
+            var inc = 1;
+        } else {
+            var inc = -1;
+        }
+        if (btn_num < max && next || btn_num > 1 && prev) {
+            btn_num += inc;
+        } else {
+            if (next) {btn_num = 1;}
+            else {console.log("here");btn_num = 6;}
+        }
+        btn.parentNode.parentNode.dataset.num = btn_num;
+        console.log(btn.parentNode.parentNode.dataset.num);
+
+        parent.childNodes[1].childNodes.forEach(img => {
+            if (img.id ===`img${btn.parentNode.parentNode.dataset.num}`) {
+                img.className = 'visible';
+            }
+        });    
+}

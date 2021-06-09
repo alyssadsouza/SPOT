@@ -17,18 +17,19 @@ from dateutil import parser
 
 # Create your views here.
 
-@login_required
 def index(request):
-    events = Event.objects.all()
-    for event in events:
-        if event.deadline != None and event.deadline.timestamp() < datetime.datetime.now().timestamp():
-            event.late = True
-            event.save()
+    if request.user.is_authenticated:
+        events = Event.objects.all()
+        for event in events:
+            if event.deadline != None and event.deadline.timestamp() < datetime.datetime.now().timestamp():
+                event.late = True
+                event.save()
 
-    date = datetime.datetime.now()
-    month, year = date.month, date.year
+        date = datetime.datetime.now()
+        month, year = date.month, date.year
     
-    return HttpResponseRedirect(f"calendar/{month}/{year}")
+        return HttpResponseRedirect(f"calendar/{month}/{year}")
+    return render(request,"index.html")
     
 @login_required
 def calendar(request,month,year):
