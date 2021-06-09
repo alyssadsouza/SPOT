@@ -75,29 +75,8 @@ def projects(request):
         else:
             task = Event(user=request.user,project=project, title=title, front_end=front_end)
         task.save()
-    projects = Project.objects.filter(user=request.user)
+    projects = Project.objects.filter(user=request.user).order_by('deadline')
     return render(request,"projects.html",{"projects":projects})
-
-@login_required
-def blueprints(request):
-    if request.method == 'POST':
-        title, deadline, front_end = request.POST["title"], request.POST["deadline"],request.POST["front_end"]
-        project = Project.objects.get(pk=int(request.POST["project"]))
-        if len(deadline) > 0:
-            task = Event(user=request.user,project=project, title=title, deadline=deadline,front_end=front_end)
-        else:
-            task = Event(user=request.user,project=project, title=title, front_end=front_end)
-        task.save()
-
-    get_projects = Project.objects.filter(user=request.user).order_by('deadline')
-
-    projects = {}
-
-    for project in get_projects:
-        tasks = Event.objects.filter(user=request.user,project=project).order_by('deadline')
-        projects[project] = tasks
-
-    return render(request, "blueprints.html",{"projects":projects})
 
 @login_required
 def project(request,id):
@@ -114,7 +93,7 @@ def delete_task(request, id):
     except Event.DoesNotExist:
         return HttpResponse("Event Not Found.")
     task.delete()
-    return HttpResponseRedirect("/blueprints")
+    return HttpResponseRedirect("/projects")
 
 @login_required
 def delete_project(request, id):
@@ -126,7 +105,7 @@ def delete_project(request, id):
     if request.method == "POST":
         project.delete()
         request.method = "GET"
-        return HttpResponseRedirect("/blueprints")
+        return HttpResponseRedirect("/projects")
     
     return render(request, "delete.html", {"project":project})
 
@@ -145,7 +124,7 @@ def edit_project(request, id):
         project.deadline = deadline
         project.save()
         request.method = "GET"
-        return HttpResponseRedirect("/blueprints")
+        return HttpResponseRedirect("/projects")
     
     return render(request, "edit.html", {"project":project})
 
@@ -155,7 +134,7 @@ def add_project(request):
         title, description, deadline = request.POST["title"],  request.POST["description"],  request.POST["deadline"]
         project = Project(user=request.user,title=title,description=description,deadline=deadline)
         project.save()
-        return HttpResponseRedirect("/blueprints")
+        return HttpResponseRedirect("/projects")
 
     return render(request, "add_project.html")    
 
@@ -189,7 +168,7 @@ def event(request, id):
         event.save()
         print("SAVED:",event)
         request.method = "GET"
-        return HttpResponseRedirect("/blueprints")
+        return HttpResponseRedirect("/projects")
     else:
         return(HttpResponse(status=404))
 
