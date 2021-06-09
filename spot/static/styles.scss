@@ -37,7 +37,7 @@ border: none;
 
 .project {
     h1,h2 {
-        color:rgb(50,50,50,);
+        color:rgb(50,50,50);
     }
     h3 {
         color:white;
@@ -460,4 +460,12 @@ footer {
     button {
         border-radius: 20px;
     }
+}
+
+.grid-87-13 {
+    grid-template-columns: 87% 13%;
+}
+
+#project-link {
+    color:rgb(50,50,50);
 }

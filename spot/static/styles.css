@@ -509,4 +509,13 @@ footer {
 #cancel button {
   border-radius: 20px;
 }
+
+.grid-87-13 {
+  -ms-grid-columns: 87% 13%;
+      grid-template-columns: 87% 13%;
+}
+
+#project-link {
+  color: #323232;
+}
 /*# sourceMappingURL=styles.css.map */

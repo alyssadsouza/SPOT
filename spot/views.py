@@ -66,6 +66,19 @@ def calendar(request,month,year):
         })
 
 @login_required
+def projects(request):
+    if request.method == 'POST':
+        title, deadline, front_end = request.POST["title"], request.POST["deadline"],request.POST["front_end"]
+        project = Project.objects.get(pk=int(request.POST["project"]))
+        if len(deadline) > 0:
+            task = Event(user=request.user,project=project, title=title, deadline=deadline,front_end=front_end)
+        else:
+            task = Event(user=request.user,project=project, title=title, front_end=front_end)
+        task.save()
+    projects = Project.objects.filter(user=request.user)
+    return render(request,"projects.html",{"projects":projects})
+
+@login_required
 def blueprints(request):
     if request.method == 'POST':
         title, deadline, front_end = request.POST["title"], request.POST["deadline"],request.POST["front_end"]
@@ -85,6 +98,14 @@ def blueprints(request):
         projects[project] = tasks
 
     return render(request, "blueprints.html",{"projects":projects})
+
+@login_required
+def project(request,id):
+
+    project = Project.objects.get(pk=id)
+    tasks = Event.objects.filter(user=request.user,project=project).order_by('deadline')
+
+    return render(request, "project.html",{"project":project,"tasks":tasks})
 
 @login_required
 def delete_task(request, id):
