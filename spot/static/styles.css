@@ -234,6 +234,10 @@ nav ul img {
   background-color: #FFED86;
 }
 
+#to-do input {
+  width: -webkit-fill-available;
+}
+
 .task {
   margin-bottom: 1px;
   padding: 5px;

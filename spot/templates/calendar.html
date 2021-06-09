@@ -68,16 +68,24 @@
             {% else %}
                 <div class="task white">
             {% endif %}
-                    <div>
+                    <div id="task{{event.id}}">
                         <form class="to-do">
                             <input type=checkbox class="task-checkbox" data-id={{event.id}}>{{event.title}}</input><br>
                             <label><b>Deadline: </b>{{event.deadline}}</label>
                         </form>
                     </div>
+                    <div class="to-do" style="display:none" id="edit{{event.id}}">
+                        <form id="edit{{event.id}}-form">
+                            <input type=text class="task-checkbox" id="edit{{event.id}}-title" value="{{event.title}}" data-id={{event.id}}><br>
+                            <p>Original deadline: {{event.deadline}}</p><br>
+                            <b>Deadline: </b><input type="datetime-local" id="edit{{event.id}}-deadline"><br>
+                            <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                        </form>
+                    </div>
                     <div class="edit-btns">
                         <ul>
-                            <li><img src="{% static 'images/edit.svg' %}"></li>
-                            <li><img src="{% static 'images/delete.svg' %}"></li>
+                            <li><a class="edit-task"  data-id={{event.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
+                            <li><a href="{% url 'delete-task' event.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                         </ul>
                     </div>
                 </div>
