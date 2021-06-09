@@ -77,13 +77,12 @@ def blueprints(request):
         task.save()
 
     get_projects = Project.objects.filter(user=request.user).order_by('deadline')
-    print(get_projects)
+
     projects = {}
 
     for project in get_projects:
         tasks = Event.objects.filter(user=request.user,project=project).order_by('deadline')
         projects[project] = tasks
-    print(projects)
 
     return render(request, "blueprints.html",{"projects":projects})
 
@@ -94,7 +93,7 @@ def delete_task(request, id):
     except Event.DoesNotExist:
         return HttpResponse("Event Not Found.")
     task.delete()
-    return blueprints(request)
+    return HttpResponseRedirect("/blueprints")
 
 @login_required
 def delete_project(request, id):
@@ -106,7 +105,7 @@ def delete_project(request, id):
     if request.method == "POST":
         project.delete()
         request.method = "GET"
-        return blueprints(request)
+        return HttpResponseRedirect("/blueprints")
     
     return render(request, "delete.html", {"project":project})
 
@@ -125,7 +124,7 @@ def edit_project(request, id):
         project.deadline = deadline
         project.save()
         request.method = "GET"
-        return blueprints(request)
+        return HttpResponseRedirect("/blueprints")
     
     return render(request, "edit.html", {"project":project})
 
@@ -135,7 +134,7 @@ def add_project(request):
         title, description, deadline = request.POST["title"],  request.POST["description"],  request.POST["deadline"]
         project = Project(user=request.user,title=title,description=description,deadline=deadline)
         project.save()
-        return HttpResponseRedirect("blueprints")
+        return HttpResponseRedirect("/blueprints")
 
     return render(request, "add_project.html")    
 
@@ -169,7 +168,7 @@ def event(request, id):
         event.save()
         print("SAVED:",event)
         request.method = "GET"
-        return blueprints(request)
+        return HttpResponseRedirect("/blueprints")
     else:
         return(HttpResponse(status=404))
 
