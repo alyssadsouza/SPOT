@@ -29,7 +29,7 @@
                             {% if task.front_end %}
                                 {% if task.completed %}
                                     <div class="task green">
-                                        <div style="display: block;" id="task{{task.id}}">
+                                        <div id="task{{task.id}}">
                                             <form class="to-do">
                                                 <input type=checkbox class="task-checkbox" data-id={{task.id}} checked>{{task.title}}</input><br>
                                                 <label><b>Deadline: </b>{{task.deadline}}</label>
@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="to-do" style="display:none" id="edit{{task.id}}">
                                             <form id="edit{{task.id}}-form">
-                                                <input type=text class="task-checkbox" id="edit{{task.id}}-title" value={{task.title}} data-id={{task.id}}><br>
+                                                <input type=text class="task-checkbox" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
                                                 <p>Original deadline: {{task.deadline}}</p><br>
                                                 <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
                                                 <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
@@ -45,37 +45,53 @@
                                         </div>
                                         <div class="edit-btns">
                                             <ul>
-                                                <li><a class="edit-task" href="#" data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
+                                                <li><a class="edit-task"  data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
                                                 <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 {% elif task.late %}
                                     <div class="task red">
-                                        <div>
+                                        <div id="task{{task.id}}">
                                             <form class="to-do">
                                                 <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
                                                 <label><b>Deadline: </b>{{task.deadline}}</label>
                                             </form>
                                         </div>
+                                        <div class="to-do" style="display:none" id="edit{{task.id}}">
+                                            <form id="edit{{task.id}}-form">
+                                                <input type=text class="task-checkbox" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                                <p>Original deadline: {{task.deadline}}</p><br>
+                                                <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                                <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                            </form>
+                                        </div>
                                         <div class="edit-btns">
                                             <ul>
-                                                <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                                <li><a class="edit-task" data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
                                                 <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 {% else %}
                                     <div class="task white">
-                                        <div>
+                                        <div id="task{{task.id}}">
                                             <form class="to-do">
                                                 <input type=checkbox class="task-checkbox" data-id={{task.id}}>{{task.title}}</input><br>
                                                 <label><b>Deadline: </b>{{task.deadline}}</label>
                                             </form>
                                         </div>
+                                        <div class="to-do" style="display:none" id="edit{{task.id}}">
+                                            <form id="edit{{task.id}}-form">
+                                                <input type=text class="task-checkbox" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                                <p>Original deadline: {{task.deadline}}</p><br>
+                                                <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                                <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                            </form>
+                                        </div>
                                         <div class="edit-btns">
                                             <ul>
-                                                <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                                <li><a class="edit-task" data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
                                                 <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                                             </ul>
                                         </div>
@@ -109,9 +125,17 @@
                                         <label><b>Deadline: </b>{{task.deadline}}</label>
                                     </form>
                                 </div>
+                                <div class="to-do" style="display:none" id="edit{{task.id}}">
+                                    <form id="edit{{task.id}}-form">
+                                        <input type=text class="task-checkbox" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                        <p>Original deadline: {{task.deadline}}</p><br>
+                                        <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                        <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                    </form>
+                                </div>
                                 <div class="edit-btns">
                                     <ul>
-                                        <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                        <li><a class="edit-task"  data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
                                         <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                                     </ul>
                                 </div>
@@ -124,9 +148,17 @@
                                         <label><b>Deadline: </b>{{task.deadline}}</label>
                                     </form>
                                 </div>
+                                <div class="to-do" style="display:none" id="edit{{task.id}}">
+                                    <form id="edit{{task.id}}-form">
+                                        <input type=text class="task-checkbox" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                        <p>Original deadline: {{task.deadline}}</p><br>
+                                        <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                        <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                    </form>
+                                </div>
                                 <div class="edit-btns">
                                     <ul>
-                                        <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                        <li><a class="edit-task"  data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
                                         <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                                     </ul>
                                 </div>
@@ -139,9 +171,17 @@
                                         <label><b>Deadline: </b>{{task.deadline}}</label>
                                     </form>
                                 </div>
+                                <div class="to-do" style="display:none" id="edit{{task.id}}">
+                                    <form id="edit{{task.id}}-form">
+                                        <input type=text class="task-checkbox" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                        <p>Original deadline: {{task.deadline}}</p><br>
+                                        <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                        <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                    </form>
+                                </div>
                                 <div class="edit-btns">
                                     <ul>
-                                        <li><a href="{% url 'edit-task' task.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                                        <li><a class="edit-task"  data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
                                         <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
                                     </ul>
                                 </div>

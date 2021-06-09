@@ -221,6 +221,9 @@ nav {
 
 .edit-btns {
     position:relative;
+    a {
+        cursor: pointer;
+    }
     img {
         width:30px;
     }

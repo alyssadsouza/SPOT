@@ -256,6 +256,10 @@ nav ul img {
   position: relative;
 }
 
+.edit-btns a {
+  cursor: pointer;
+}
+
 .edit-btns img {
   width: 30px;
 }

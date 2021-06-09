@@ -13,6 +13,7 @@ import json
 
 import calendar as cd
 import datetime
+from dateutil import parser
 
 # Create your views here.
 
@@ -140,20 +141,28 @@ def event(request, id):
         event = Event.objects.get(pk=id)
     except Event.DoesNotExist:
         return JsonResponse({"error": "Event not found."}, status=404)
+    
     if request.method == 'PUT':
         data = json.loads(request.body)
         if data.get("completed") is not None:
             event.completed = data["completed"]
         event.save()
         return HttpResponse(status=204)
+
     if request.method == 'POST':
         data = json.loads(request.body)
         if data.get("title") is not None:
             event.title = data["title"]
-        if data.get("deadline") is not None and data.get("deadline") != "None":
-            event.deadline = data["deadline"]
+        if data.get("deadline") is not None and data.get("deadline") != "None" and data.get("deadline") != "":
+            event.deadline = parser.parse(data["deadline"])
+            print(event.deadline)
         event.save()
-        print(event)
+        if event.deadline != None and event.deadline.timestamp() < datetime.datetime.now().timestamp():
+            event.late = True
+        else:
+            event.late = False
+        event.save()
+        print("SAVED:",event)
         request.method = "GET"
         return blueprints(request)
     else:
