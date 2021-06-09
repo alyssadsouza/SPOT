@@ -187,14 +187,14 @@ nav ul img {
           transform: translate(0, -50%);
 }
 
-#calendar, #blueprints, #addproject {
+#calendar, #blueprints, #addproject, #cancel {
   position: relative;
   padding: 50px 100px 50px;
   -webkit-animation: fade 1s;
           animation: fade 1s;
 }
 
-#calendar div, #blueprints div, #addproject div {
+#calendar div, #blueprints div, #addproject div, #cancel div {
   left: 50px;
 }
 
@@ -486,5 +486,27 @@ footer {
 #create-project {
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid #FFED86;
+}
+
+.inline {
+  list-style-type: none;
+  padding: 0;
+}
+
+.inline li {
+  display: inline-block;
+}
+
+#cancel {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+#cancel button {
+  border-radius: 20px;
 }
 /*# sourceMappingURL=styles.css.map */

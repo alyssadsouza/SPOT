@@ -161,7 +161,7 @@ nav {
     }
 }
 
-#calendar, #blueprints, #addproject {
+#calendar, #blueprints, #addproject, #cancel {
     position:relative;
     padding: 50px 100px 50px;
     div {
@@ -440,4 +440,24 @@ footer {
 #create-project {
     background: rgba(256,256,256,0.5);
     border: 1px solid $yellow;
+}
+
+.inline {
+    list-style-type: none;
+    padding:0;
+    li {
+        display: inline-block;
+    }
+}
+
+#cancel {
+    text-align: center;
+    top: 50%;
+    left:50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+
+    button {
+        border-radius: 20px;
+    }
 }

@@ -102,8 +102,13 @@ def delete_project(request, id):
         project = Project.objects.get(pk=id)
     except Event.DoesNotExist:
         return HttpResponse("Project Not Found.")
-    project.delete()
-    return blueprints(request)
+    
+    if request.method == "POST":
+        project.delete()
+        request.method = "GET"
+        return blueprints(request)
+    
+    return render(request, "delete.html", {"project":project})
 
 @login_required
 def edit_task(request, id):
