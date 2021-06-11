@@ -114,7 +114,8 @@ input::placeholder {
 }
 
 #login, #register {
-  width: 100%;
+  width: -webkit-fill-available;
+  padding: 10px;
   text-align: center;
   position: absolute;
   top: 50%;
@@ -127,6 +128,9 @@ table {
   left: 50%;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
+  table-layout: fixed;
+  width: 900px;
+  left: 450px;
 }
 
 table td {
@@ -134,18 +138,19 @@ table td {
   width: 100px;
   padding: 10px;
   vertical-align: top;
+  word-wrap: break-word;
   border: 5px solid transparent;
   border-radius: 20px;
   background-color: #F4F7F0;
 }
 
 .calendar-events {
-  overflow: auto;
+  overflow: scroll;
   width: 100%;
-  height: 90%;
+  height: 80%;
 }
 
-.calendar-events::-webkit-scrollbar {
+.calendar-events::-webkit-scrollbar, #calendar-table::-webkit-scrollbar {
   height: 0px;
   width: 0px;
 }
@@ -634,6 +639,7 @@ footer {
 
 #video {
   text-align: center;
+  width: -webkit-fill-available;
 }
 
 iframe {
@@ -676,7 +682,8 @@ iframe {
 }
 
 #index-nav ul {
-  margin: 0;
+  margin: 10px;
+  text-align: left;
 }
 
 #exit-to-do {
@@ -695,6 +702,14 @@ iframe {
 
 .to-do {
   cursor: pointer;
+}
+
+#calendar-table {
+  text-align: -webkit-center;
+}
+
+input[type=text], input[type=datetime-local] {
+  width: -webkit-fill-available;
 }
 
 @media only screen and (max-width: 750px) {
@@ -721,7 +736,7 @@ iframe {
     font-size: 48px;
   }
   iframe {
-    width: 300px;
+    width: -webkit-fill-available;
   }
   #how-it-works-group div {
     padding: 20px;
@@ -772,6 +787,12 @@ iframe {
   #calendar div, #blueprints div, #addproject div {
     left: 0;
   }
+  .add-task li, .add-task input {
+    width: -webkit-fill-available;
+  }
+}
+
+@media only screen and (max-width: 900px) {
   .project {
     width: -webkit-fill-available;
   }
@@ -780,6 +801,22 @@ iframe {
   }
   .sketch {
     height: 300px;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  #calendar-table {
+    width: auto;
+    overflow-x: scroll;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  #blueprints div {
+    padding: 10px;
+  }
+  nav ul li {
+    margin: 0 10px;
   }
 }
 /*# sourceMappingURL=styles.css.map */
