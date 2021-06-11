@@ -22,6 +22,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -198,10 +199,6 @@ nav ul img {
           animation: fade 1s;
 }
 
-#calendar div, #blueprints div, #addproject div, #cancel div {
-  left: 50px;
-}
-
 #calendar {
   padding: 0 300px 100px 100px;
 }
@@ -266,6 +263,10 @@ nav ul img {
 
 .edit-btns {
   position: relative;
+  text-align: right;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .edit-btns a {
@@ -334,14 +335,14 @@ nav ul img {
 
 .project {
   background-color: #FFED86;
-  width: 100%;
-  display: -ms-inline-grid;
-  display: inline-grid;
-  -ms-grid-columns: 65% 35%;
-      grid-template-columns: 65% 35%;
-  gap: 50px;
-  margin: 20px;
-  padding: 20px;
+  width: -webkit-fill-available;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 50px;
   border-radius: 20px;
 }
 
@@ -351,6 +352,7 @@ nav ul img {
   display: grid;
   -ms-grid-rows: 50% 50%;
       grid-template-rows: 50% 50%;
+  margin: 10px;
 }
 
 #notes {
@@ -537,10 +539,12 @@ footer {
   position: relative;
   -webkit-animation: fade 1s;
           animation: fade 1s;
+  width: auto;
 }
 
 #index h1 {
   color: #323232;
+  text-align: center;
 }
 
 #index div {
@@ -552,13 +556,18 @@ footer {
   padding: 50px;
 }
 
-#intro, #welcome {
+#intro, #welcome, #how-it-works-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 #welcome {
@@ -574,6 +583,7 @@ footer {
 #welcome h1 {
   font-size: 72px;
   margin: 0;
+  line-height: 68px;
 }
 
 #welcome div {
@@ -581,7 +591,11 @@ footer {
 }
 
 #welcome img {
-  width: 600px;
+  max-width: 600px;
+}
+
+.index-msg-div {
+  max-width: 650px;
 }
 
 #welcome-btn {
@@ -608,9 +622,13 @@ footer {
   text-align: center;
 }
 
+#how-it-works {
+  max-width: 900px;
+}
+
 .index-images {
   height: auto;
-  width: auto;
+  max-width: 700px;
 }
 
 .index-images ul {
@@ -633,10 +651,6 @@ footer {
   margin: 0;
   padding: 0;
   width: -webkit-fill-available;
-}
-
-#how-it-works-group {
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #video {
@@ -684,5 +698,105 @@ iframe {
 
 #index-nav ul {
   margin: 0;
+}
+
+#exit-to-do {
+  display: none;
+  position: relative;
+  top: 35px;
+  left: -15px;
+  background: transparent;
+  border: none;
+}
+
+#exit-to-do img {
+  width: 20px;
+  height: 20px;
+}
+
+@media only screen and (max-width: 750px) {
+  img {
+    width: 300px;
+  }
+  .index-images {
+    width: -webkit-fill-available;
+  }
+  #index div, #intro div, #welcome div {
+    padding: 0;
+  }
+  #index ul, #intro ul, #welcome ul {
+    margin: 50px 0;
+  }
+  #welcome h1 {
+    font-size: 60px;
+  }
+  #welcome h4 {
+    font-size: 20px;
+    margin: 30px 0;
+  }
+  h1 {
+    font-size: 48px;
+  }
+  iframe {
+    width: 300px;
+  }
+  #how-it-works-group div {
+    padding: 20px;
+  }
+  #how-it-works-group #how-it-works {
+    padding: 50px;
+  }
+  button img {
+    width: 30px;
+  }
+  #to-do {
+    display: none;
+  }
+  #to-do-btn {
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    margin: 10px;
+    border-radius: 100%;
+    padding: 10px;
+    background-color: #FFED86;
+    border: transparent;
+  }
+  nav {
+    height: 50px;
+    width: 100%;
+  }
+  nav ul {
+    height: 50px;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+  }
+  nav ul li {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+    margin: 0 15px;
+  }
+  nav ul li img {
+    width: 30px;
+  }
+  #calendar, #blueprints, #addproject {
+    padding: 10px;
+    top: 50px;
+  }
+  #calendar div, #blueprints div, #addproject div {
+    left: 0;
+  }
+  .project {
+    width: -webkit-fill-available;
+  }
+  .project, .project-notes {
+    display: block;
+  }
+  .sketch {
+    height: 300px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

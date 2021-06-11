@@ -7,6 +7,19 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".prev").forEach(btn => {
         btn.addEventListener("click", () => change_image(btn=btn,next=false,prev=true));
     });
+
+    if (document.getElementById("to-do-btn") instanceof Element) {
+        document.getElementById("to-do-btn").onclick = () => {
+            console.log("hi");
+            document.getElementById("to-do").style.display = "block";
+            document.getElementById("to-do-btn").style.display = "none";
+            document.getElementById("exit-to-do").style.display = "block";
+            document.getElementById("exit-to-do").onclick = () => {
+                document.getElementById("to-do-btn").style.display = "block";
+                document.getElementById("to-do").style.display = "none";
+            }
+        }
+    }
     
     document.querySelectorAll('.task-checkbox').forEach(btn => {
         var parent = btn.parentNode.parentNode.parentNode;

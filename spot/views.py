@@ -68,6 +68,12 @@ def calendar(request,month,year):
 
 @login_required
 def projects(request):
+    projects = Project.objects.filter(user=request.user).order_by('deadline')
+    return render(request,"projects.html",{"projects":projects})
+
+@login_required
+def project(request,id):
+
     if request.method == 'POST':
         title, deadline, front_end = request.POST["title"], request.POST["deadline"],request.POST["front_end"]
         project = Project.objects.get(pk=int(request.POST["project"]))
@@ -76,11 +82,6 @@ def projects(request):
         else:
             task = Event(user=request.user,project=project, title=title, front_end=front_end)
         task.save()
-    projects = Project.objects.filter(user=request.user).order_by('deadline')
-    return render(request,"projects.html",{"projects":projects})
-
-@login_required
-def project(request,id):
 
     project = Project.objects.get(pk=id)
     tasks = Event.objects.filter(user=request.user,project=project).order_by('deadline')
@@ -174,6 +175,8 @@ def event(request, id):
         return(HttpResponse(status=404))
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("index"))
     if request.method == "POST":
 
         # Attempt to sign user in

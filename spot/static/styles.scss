@@ -14,6 +14,7 @@ body {
     padding:0;
     height:100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -168,9 +169,6 @@ nav {
 #calendar, #blueprints, #addproject, #cancel {
     position:relative;
     padding: 50px 100px 50px;
-    div {
-        left:50px;
-    }
     animation:fade 1s;
 }
 
@@ -232,6 +230,8 @@ nav {
 
 .edit-btns {
     position:relative;
+    text-align: right;
+    width:fit-content;
     a {
         cursor: pointer;
     }
@@ -292,12 +292,10 @@ nav {
 
 .project {
     background-color: $yellow;
-    width:100%;
-    display: inline-grid;
-    grid-template-columns: 65% 35%;
-    gap:50px;
-    margin:20px;
-    padding:20px;
+    width:-webkit-fill-available;
+    display: flex;
+    justify-content: space-between;
+    padding:50px;
     border-radius: 20px;
 }
 
@@ -305,6 +303,7 @@ nav {
     max-width: 400px;
     display: grid;
     grid-template-rows: 50% 50%;
+    margin:10px;
 }
 
 #notes {
@@ -484,8 +483,10 @@ footer {
 #index {
     position:relative;
     animation:fade 1s;
+    width:auto;
     h1 {
         color:rgb(50,50,50);
+        text-align: center;
     }
     div {
         padding:50px;
@@ -497,9 +498,11 @@ footer {
     }
 }
 
-#intro, #welcome {
+#intro, #welcome, #how-it-works-group {
     display:flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 #welcome {
@@ -512,13 +515,18 @@ footer {
     h1 {
         font-size: 72px;
         margin:0;
+        line-height: 68px;
     }
     div {
         text-align: center;
     }
     img {
-        width:600px;
+        max-width:600px;
     }
+}
+
+.index-msg-div {
+    max-width: 650px;
 }
 
 #welcome-btn {
@@ -543,9 +551,13 @@ footer {
     text-align: center;
 }
 
+#how-it-works {
+    max-width: 900px;
+}
+
 .index-images {
     height: auto;
-    width: auto;
+    max-width: 700px;
     
     ul {
         width:100%;
@@ -567,10 +579,6 @@ footer {
     margin:0;
     padding:0;
     width: -webkit-fill-available;
-}
-
-#how-it-works-group {
-    background-color: rgba(256,256,256,0.5);
 }
 
 #video {
@@ -610,5 +618,113 @@ iframe {
     }
     ul {
         margin:0;
+    }
+}
+
+#exit-to-do {
+    display:none;
+    position:relative;
+    top:35px;
+    left:-15px;
+    background:transparent;
+    border:none;
+    img {
+        width:20px;
+        height:20px;
+    }
+}
+
+@media only screen and (max-width:750px) {
+    
+    img {
+        width: 300px;
+    }
+    .index-images {
+        width:-webkit-fill-available;
+    }
+    #index, #intro, #welcome {
+        div {
+            padding:0;
+        }
+        ul {
+            margin:50px 0;
+        }
+    }
+    #welcome {
+        h1 {
+            font-size: 60px;
+        }
+        h4 {
+            font-size: 20px;
+            margin:30px 0;
+        }
+    }
+    h1 {
+        font-size: 48px;
+    }
+    iframe {
+        width:300px;
+    }
+    #how-it-works-group {
+        div {
+            padding:20px;
+        }
+        #how-it-works {
+            padding:50px;
+        }
+    }
+    button {
+        img {
+            width:30px;
+        }
+    }
+    #to-do {
+        display:none;
+    }
+    #to-do-btn {
+        display:block;
+        position:fixed;
+        right:10px;
+        bottom:10px;
+        margin:10px;
+        border-radius: 100%;
+        padding:10px;
+        background-color: $yellow;
+        border:transparent;
+    }
+    nav {
+        height:50px;
+        width:100%;
+        ul {
+            height:50px;
+            list-style-type: none;
+            padding:0;
+            text-align: center;
+            li {
+                display: inline-block;
+                position:relative;
+                top:-5px;
+                margin: 0 15px;
+                img {
+                    width:30px;
+                }
+            }
+        }
+    }
+    #calendar, #blueprints, #addproject {
+        padding:10px;
+        top:50px;
+        div {
+            left:0;
+        }
+    }
+    .project {
+        width:-webkit-fill-available;
+    }
+    .project, .project-notes {
+        display:block;
+    }
+    .sketch {
+        height: 300px;
     }
 }

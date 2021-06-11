@@ -58,7 +58,9 @@
 
     </div>
 
+    <button id="to-do-btn"><img src="{% static 'images/tasks.svg' %}"></button>
     <div id="to-do">
+        <button id="exit-to-do"><img src="{% static 'images/exit.svg' %}"></button>
         <h1>To-Do</h1>
         {% for event in todays_events %}
             {% if event.completed %}
