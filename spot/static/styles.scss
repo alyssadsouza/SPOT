@@ -627,10 +627,12 @@ iframe {
     text-align: -webkit-center;
 }
 
-input[type=text], input[type=datetime-local] {
-    width:-webkit-fill-available;
+#blueprints, #addproject {
+    input[type=text], input[type=datetime-local] {
+        width:-webkit-fill-available;
+    }
+    
 }
-
 @media only screen and (max-width:750px) {
     
     img {

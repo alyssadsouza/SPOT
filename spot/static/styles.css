@@ -708,7 +708,7 @@ iframe {
   text-align: -webkit-center;
 }
 
-input[type=text], input[type=datetime-local] {
+#blueprints input[type=text], #blueprints input[type=datetime-local], #addproject input[type=text], #addproject input[type=datetime-local] {
   width: -webkit-fill-available;
 }
 
