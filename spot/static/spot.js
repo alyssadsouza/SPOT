@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
-    document.querySelectorAll('.task-checkbox').forEach(btn => {
-        var parent = btn.parentNode.parentNode.parentNode;
+    document.querySelectorAll('.to-do').forEach(btn => {
+        var parent = btn.parentNode.parentNode;
         console.log(parent.classList);
         
         btn.addEventListener("click", () => {

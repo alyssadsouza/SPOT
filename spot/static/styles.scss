@@ -392,26 +392,6 @@ form {
     }
 }
 
-input[type=checkbox] {
-    cursor: pointer;
-    opacity: 0;
-}
-
-#blueprints input[type=checkbox] {
-    left:150px;
-    width:55%;
-    height:70px;
-    position:absolute;
-    transform: translate(0,30px);
-}
-
-#to-do input[type=checkbox] {
-    width: 100%;
-    position: absolute;
-    right: 5px;
-    height: 50px;
-}
-
 #addproject {
     h1 {
         color:$green;
@@ -633,6 +613,9 @@ iframe {
         height:20px;
     }
 }
+.to-do {
+    cursor: pointer;
+}
 
 @media only screen and (max-width:750px) {
     
@@ -692,6 +675,7 @@ iframe {
         background-color: $yellow;
         border:transparent;
     }
+
     nav {
         height:50px;
         width:100%;

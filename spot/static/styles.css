@@ -445,27 +445,6 @@ form {
   font: 14px 'Noto Sans JP', sans-serif;
 }
 
-input[type=checkbox] {
-  cursor: pointer;
-  opacity: 0;
-}
-
-#blueprints input[type=checkbox] {
-  left: 150px;
-  width: 55%;
-  height: 70px;
-  position: absolute;
-  -webkit-transform: translate(0, 30px);
-          transform: translate(0, 30px);
-}
-
-#to-do input[type=checkbox] {
-  width: 100%;
-  position: absolute;
-  right: 5px;
-  height: 50px;
-}
-
 #addproject h1 {
   color: #A2DCE7;
 }
@@ -712,6 +691,10 @@ iframe {
 #exit-to-do img {
   width: 20px;
   height: 20px;
+}
+
+.to-do {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 750px) {
