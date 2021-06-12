@@ -13,7 +13,7 @@ import json
 
 import calendar as cd
 import datetime
-from dateutil import parser
+import dateutil
 
 # Create your views here.
 
@@ -160,7 +160,7 @@ def event(request, id):
         if data.get("title") is not None:
             event.title = data["title"]
         if data.get("deadline") is not None and data.get("deadline") != "None" and data.get("deadline") != "":
-            event.deadline = parser.parse(data["deadline"])
+            event.deadline = dateutil.parser.parse(data["deadline"])
             print(event.deadline)
         event.save()
         if event.deadline != None and event.deadline.timestamp() < datetime.datetime.now().timestamp():
