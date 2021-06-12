@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}The Side Project Organization Tracker | SPOT{% endblock %}
+{% block body %}  
+<nav id="index-nav">
+    <ul>
+        <li><a href="{% url 'index' %}"><img src="{% static 'images/dog copy.svg' %}"></a></li>
+        <li><a href="{% url 'login'%}">Log In</a></li>
+        <li><a href="{% url 'register'%}">Register</a></li>
+    </ul>
+</nav>
+<div id="index">
+    <div id="welcome">
+        <div>
+            <img src="{% static 'images/index-dog.png' %}">
+        </div>
+        <div class='index-msg-div'>
+            <h4>New to CS, SE, all things tech?</h4>
+            <h1>Get on track with SPOT.</h1>
+            <ul class="inline">
+                <div>
+                    <li><a href="{% url 'login' %}" class="btn green" id="welcome-btn" >Log In</a></li>
+                    <li><a href="{% url 'register' %}" class="btn green" id="welcome-btn" >Sign Up</a></li>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div id="intro">
+        <div class='index-msg-div'>
+            <h1>What is SPOT?</h1>
+            <h3>The Side Project Organization Tracker</h3>
+            <p>SPOT is a project planner and management web app aimed towards new programmers that eases the daunting task of starting a new side project. This app is perfect for those starting out, but it is just as valuable to veteran hackers who struggle to finish projects before moving on to another.</p>
+            <div id="get-started-div" style='margin:40px;padding:10px;'>
+                <a href="{% url 'register' %}"><button id="get-started" class="btn green" >Get Started!</button></a>
+            </div>
+        </div>
+        <div id="video">
+            <iframe width="500" height="350"
+                src="https://www.youtube.com/embed/IE0xMSTcOe8?controls=1" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <div id="how-it-works-group">
+        <div id="how-it-works"  class='index-msg-div'>
+            <h1>How Does it Work?</h1>
+            <p>SPOT will get you started by documenting the name and main idea of your project. By inputting a hopeful deadline, the app will encourage you to keep at it and finish your project. Lastly, to help you stay on track, break your project up into smaller components (categorized by front-end or back-end) with their own completion deadlines. Colour-coded tasks will help prompt you to complete tasks and check them off as soon as possible. With our minimal but aesthetic UI, you’re bound to start completing those awesome half-finished projects.</p>
+        </div>
+    
+        <div class="index-images" data-max=6 id="project1">
+            <div class="inner-images" style="margin:0;padding:0;">
+                <img src="{% static 'images/1.png' %}" id="img1" class='visible'>
+                <img src="{% static 'images/2.png' %}" id="img2" class='project-img'>
+                <img src="{% static 'images/3.png' %}" id="img3" class='project-img'>
+                <img src="{% static 'images/4.png' %}" id="img4" class='project-img'>
+                <img src="{% static 'images/5.png' %}" id="img5" class='project-img'>
+                <img src="{% static 'images/6.png' %}" id="img6" class='project-img'>
+            </div>
+            <ul class="inline" data-num = 1>
+                <li><button class="prev btn green" data-parent="project1"><img src="{% static 'images/prev.svg' %}" width="30px"></button></li>
+                <li><button class="next btn green" data-parent="project1"><img src="{% static 'images/next.svg' %}" width="30px"></button></li>
+            </ul>
+        </div>
+    
+    </div>
+
+</div>
+
+<footer>
+    <a href="https://storyset.com/people">People illustrations by Storyset</a>
+</footer>
+
+{% endblock %}
