@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}{{project.title}} | SPOT{% endblock %}
+
+{% block body %}
+
+    <div id="blueprints">
+        
+        <div class="project">
+            <div class="left">
+                <h1>{{project.title}}</h1>
+                <div class="edit-btns" style="left:0">
+                    <ul>
+                        <li><a href="{% url 'edit-project' project.id %}"><img src="{% static 'images/edit.svg' %}"></a></li>
+                        <li><a href="{% url 'delete-project' project.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                    </ul>
+                </div>
+                <h3>Description:</h3>
+                <p>{{project.description}}</p>
+                <h3>Deadline:</h3>
+                <p><b>{{project.deadline}}</b></p>
+
+                <h2>The Blueprints</h2>
+                <div class="front-end">
+                    <h3>Front-End</h3>
+                    {% for task in tasks %}
+                        {% if task.front_end %}
+                            {% if task.completed %}
+                                <div class="task green">
+                            {% elif task.late %}
+                                <div class="task red">
+                            {% else %}
+                                <div class="task white">
+                            {% endif %}
+                                    <div id="task{{task.id}}">
+                                        <form class="to-do" data-id={{task.id}}>
+                                            {% if task.completed %}
+                                                <label>{{task.title}}</label><br>
+                                            {% else %}
+                                                <label>{{task.title}}</label><br>
+                                            {% endif %}
+                                            <label><b>Deadline: </b>{{task.deadline}}</label>
+                                        </form>
+                                    </div>
+                                    <div style="display:none" id="edit{{task.id}}">
+                                        <form id="edit{{task.id}}-form">
+                                            <input type="text" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                            <p>Original deadline: {{task.deadline}}</p><br>
+                                            <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                            <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                        </form>
+                                    </div>
+                                    <div class="edit-btns">
+                                        <ul>
+                                            <li><a class="edit-task" data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
+                                            <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <form class="add-task" method="POST">
+                        {% csrf_token %}
+                        <ul class='add-task-list'>
+                            <li><label for="title">Add a task:</label><br>
+                                <input type="text" name="title" id="title" placeholder="Component..." required></li>
+                                <li><label for="deadline">Add a deadline (or skip for now):</label><br>
+                                    <input type="datetime-local" name="deadline" id="deadline"></li>
+                        </ul>
+                        <input type="hidden" value={{project.id}} name="project">
+                        <input type="hidden" value=True name="front_end">
+                        <input type="submit" class="btn" value="Add Component">
+                    </form>
+                </div>
+                <div class="back-end">
+                    <h3>Back-End</h3>
+                    {% for task in tasks %}
+                        {% if not task.front_end %}
+                            {% if task.completed %}
+                                <div class="task green">
+                            {% elif task.late %}
+                                <div class="task red">
+                            {% else %}
+                                <div class="task white">
+                            {% endif %}
+                                    <div id="task{{task.id}}">
+                                        <form class="to-do" data-id={{task.id}}>
+                                            {% if task.completed %}
+                                                <label>{{task.title}}</label><br>
+                                            {% else %}
+                                                <label>{{task.title}}</label><br>
+                                            {% endif %}
+                                            <label><b>Deadline: </b>{{task.deadline}}</label>
+                                        </form>
+                                    </div>
+                                    <div style="display:none" id="edit{{task.id}}">
+                                        <form id="edit{{task.id}}-form">
+                                            <input type="text" id="edit{{task.id}}-title" value="{{task.title}}" data-id={{task.id}}><br>
+                                            <p>Original deadline: {{task.deadline}}</p><br>
+                                            <b>Deadline: </b><input type="datetime-local" id="edit{{task.id}}-deadline"><br>
+                                            <input type="submit" class="btn" style="background-color: #FFED86;" value="Save">
+                                        </form>
+                                    </div>
+                                    <div class="edit-btns">
+                                        <ul>
+                                            <li><a class="edit-task" data-id={{task.id}}><img src="{% static 'images/edit.svg' %}"></a></li>
+                                            <li><a href="{% url 'delete-task' task.id %}"><img src="{% static 'images/delete.svg' %}"></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <form class="add-task" method="POST">
+                        {% csrf_token %}
+                        <ul class='add-task-list'>
+                            <li><label for="title">Add a task:</label><br>
+                                <input type="text" name="title" id="title" placeholder="Component..." required></li>
+                                <li><label for="deadline">Add a deadline (or skip for now):</label><br>
+                                    <input type="datetime-local" name="deadline" id="deadline"></li>
+                        </ul>
+                        <input type="hidden" value={{project.id}} name="project">
+                        <input type="hidden" value=False name="front_end">
+                        <input type="submit" class="btn" value="Add Component">
+                    </form>
+                </div>    
+            </div>
+            <div class="project-notes">
+                <div>
+                    <h3>Project Notes</h3>
+                    <textarea id="notes" placeholder="Add notes..."></textarea>
+                </div>
+                <div>
+                    <ul class="sketch-btns">
+                        <li><h3>Sketch Your Ideas</h3></li>
+                        <p>Make sure you save your sketch as an image before refreshing!</p>
+                        <li><button class="draw"><img src="{% static 'images/draw.svg' %}" width='20px'></button></li>
+                        <li><button class="erase"><img src="{% static 'images/erase.svg' %}" width='20px'></button></li>
+                        <li><button class="clear">Clear</button></li>
+                    </ul>
+                    <div class="sketch">
+                        <canvas class="paint"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
