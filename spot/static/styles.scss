@@ -336,10 +336,10 @@ nav {
 
 #no-projects {
     text-align: center;
-    width: 100%;
+    left:50%;
     top: 50%;
     position: fixed;
-    transform: translate(0, -50%);
+    transform: translate(-50%, -50%);
 }
 
 #addproject {
@@ -627,12 +627,6 @@ iframe {
     text-align: -webkit-center;
 }
 
-#blueprints, #addproject {
-    input[type=text], input[type=datetime-local] {
-        width:-webkit-fill-available;
-    }
-    
-}
 @media only screen and (max-width:750px) {
     
     img {
@@ -724,6 +718,13 @@ iframe {
             width:-webkit-fill-available;
         }
     }
+    #no-projects {
+        text-align: center;
+        width: 100%;
+        top: 50%;
+        position: fixed;
+        transform: translate(0, -50%);
+    }
 }
 
 @media only screen and (max-width:900px) {
@@ -751,5 +752,14 @@ iframe {
     }
     nav ul li {
         margin: 0 10px;
+    }
+}
+
+@media only screen and (max-width:400px) {
+    #blueprints, #addproject {
+        input[type=text], input[type=datetime-local], textarea {
+            width:-webkit-fill-available;
+        }
+        
     }
 }

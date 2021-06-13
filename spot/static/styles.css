@@ -386,11 +386,11 @@ nav ul img {
 
 #no-projects {
   text-align: center;
-  width: 100%;
+  left: 50%;
   top: 50%;
   position: fixed;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 #addproject {
@@ -708,10 +708,6 @@ iframe {
   text-align: -webkit-center;
 }
 
-#blueprints input[type=text], #blueprints input[type=datetime-local], #addproject input[type=text], #addproject input[type=datetime-local] {
-  width: -webkit-fill-available;
-}
-
 @media only screen and (max-width: 750px) {
   img {
     width: 300px;
@@ -790,6 +786,14 @@ iframe {
   .add-task li, .add-task input {
     width: -webkit-fill-available;
   }
+  #no-projects {
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    position: fixed;
+    -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+  }
 }
 
 @media only screen and (max-width: 900px) {
@@ -817,6 +821,12 @@ iframe {
   }
   nav ul li {
     margin: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #blueprints input[type=text], #blueprints input[type=datetime-local], #blueprints textarea, #addproject input[type=text], #addproject input[type=datetime-local], #addproject textarea {
+    width: -webkit-fill-available;
   }
 }
 /*# sourceMappingURL=styles.css.map */
